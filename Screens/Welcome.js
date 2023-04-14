@@ -36,19 +36,21 @@ class Welcome extends Component {
         form.append("module", "userlogin");
         form.append("email", this.state.email);
         form.append("password", this.state.password);
-        console.warn(form)
+        //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
+                //console.warn(json)
                 if (json.status) {
+                    console.log(json.token);
                     const data={'token':"Bearer "+json.token,'user_id':json.user_id,"use_type":"done"}
                     AsyncStorage.setItem('@auth_login', JSON.stringify(data));
-                    this.context.login("done");
-                    Toast.show("Logged-in Successfully")
-                    global.id = json.user_id
+                    console.log(data)
+                    // this.context.login("done");
+                    // Toast.show("Logged-in Successfully")
+                    // global.id = json.user_id
                     // this.props.navigation.navigate("Home")
                 }
                 else {

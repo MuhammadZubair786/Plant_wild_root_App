@@ -45,13 +45,13 @@ class NewAddress extends Component {
         form.append("email", this.state.mail);
         form.append("phone", this.state.contact);
         // form.append("password", this.state.password);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
+                //console.warn(json)
                 if(json.status){
                     Toast.show("Address added successfully");
                     this.props.navigation.goBack();

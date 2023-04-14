@@ -59,72 +59,119 @@ class Category extends Component {
             data: [],
             isLoading: true,
             search: '',
+            menu: []
         }
     }
 
-    componentDidMount =()=>{
+    componentDidMount = () => {
         // alert(global.id)
         this.fetch_category();
+        this.fetch_menu();
+
     }
 
-    fetch_category=()=>{
+    fetch_menu = () => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://wildroots.in/wp-json/mytheme/v1/primary-menu", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result["child-menus"][0])//menu
+                console.log(Object.values(result["child-menus"]))
+                let data = Object.values(result["menu-items"])
+                let getdata = []
+
+                //MENU
+                for (var i = 0; i < data.length; i++) {
+
+                    if (data[i]["post_parent"] == 0) {
+                        // console.log(data[i])
+                        getdata.push(data[i])
+                        let newdata = Object.values(result["child-menus"])
+                        //submenu 
+                   
+
+
+                  
+                }
+
+               
+
+
+
+
+
+
+
+                }
+
+                // for()
+                this.setState({
+                    menu: getdata
+                })
+
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    fetch_category = () => {
         var form = new FormData();
+        console.log("*********************");
+        // console.log(e)
+        console.log(global.id)
+        console.log("*********************");
         form.append("module", "catlist");
         form.append("user_id", global.id);
         // form.append("password", this.state.password);
-        console.warn(form)
+        //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
-                this.setState({data:json})
+                //console.warn(json)
+                this.setState({ data: json })
                 return json;
             }).catch((error) => {
                 console.error(error);
             }).finally(() => {
-                this.setState({isLoading:false})
+                this.setState({ isLoading: false })
             });
     }
 
     categoryListCard = ({ item }) => (
+
         <View>
+
             <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("Products",{id:item.term_id,name:item.name})}
+                onPress={() => this.props.navigation.navigate("SubMenu", { id: item.term_id, name: item.name })}
             >
 
-                <View style={{ flexDirection: "row",marginBottom:7,marginLeft:10,alignItems:"center",width:"100%",height:110 }}>
-                    <View style={{width:"22%",}}>
-                        {item.image==""?
-                        <Image
-                            source={require("../images/plant.jpg")}
-                            style={[style.recommendedImage, { height: 110, elevation: 5, width: 85, borderRadius: 20 }]}
-                        />
-                        :
-                        <Image
-                            source={{uri:item.image}}
-                            style={[style.recommendedImage, { height: 110, elevation: 5, width: 85, borderRadius: 20 }]}
-                        />
-    }
-                    </View>
-                    <View style={{flexDirection:"row",height:110,justifyContent:"space-between",width:"67%",alignItems:"center",borderBottomWidth:1,borderColor:"#d3d3d3",marginLeft:10}}>
-                    <View>
-                    <Text style={style.texxt}>
-                        {item.name}
-                    </Text>
-                    <Text style={[styles.h4,{color:"gray"}]}>
-                        {item.items} items
-                    </Text>
-                    </View>
-                    <Icon name="chevron-forward-outline" type="ionicon" color="grey" size={20}
-                    style={{ alignSelf: "center" }} />
+                <View style={{ flexDirection: "row", marginBottom: 7, marginLeft: 10, alignItems: "center", width: "100%", height: 110 }}>
+
+                    <View style={{ flexDirection: "row", height: 110, justifyContent: "space-between", width: "90%", alignItems: "center", borderBottomWidth: 1, borderColor: "#d3d3d3", marginLeft: 10 }}>
+                        <View>
+                            <Text style={style.texxt}>
+                                {item.name}
+                            </Text>
+                            <Text style={[styles.h4, { color: "gray" }]}>
+                                {item.title}
+                            </Text>
+                        </View>
+                        <Icon name="chevron-forward-outline" type="ionicon" color="grey" size={20}
+                            style={{ alignSelf: "center" }} />
                     </View>
                 </View>
             </TouchableOpacity >
 
 
+
+
         </View>
+
     )
 
     render() {
@@ -138,7 +185,7 @@ class Category extends Component {
                             Categories
                         </Text>
                         <View></View>
-                        
+
                     </View>
 
                     {/* <View>
@@ -146,19 +193,19 @@ class Category extends Component {
                     </View> */}
 
                     {this.state.isLoading ?
-                        <View style={{marginTop:200}}>
-                        {/* <Loaders /> */}
-                        <ActivityIndicator size="large" color="#637752" />
-                    </View>
+                        <View style={{ marginTop: 200 }}>
+                            {/* <Loaders /> */}
+                            <ActivityIndicator size="large" color="#637752" />
+                        </View>
                         :
                         // null
-                        <View style={{marginBottom:120}}>
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            data={this.state.data}
-                            renderItem={this.categoryListCard}
-                            keyExtractor={item => item.id}
-                        />
+                        <View style={{ marginBottom: 120 }}>
+                            <FlatList
+                                showsVerticalScrollIndicator={false}
+                                data={this.state.menu}
+                                renderItem={this.categoryListCard}
+                                keyExtractor={item => item.id}
+                            />
                         </View>
                     }
 

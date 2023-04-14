@@ -40,13 +40,13 @@ class MyCart extends Component {
   }
 
   componentDidMount() {
-    console.warn('my cart', global.cart);
+    //console.warn('my cart', global.cart);
     this.setState({data:global.cart})
     var price= global.cart.map(item=>item['_regular_price'])
     console.log("przzzzzz--->", price)
     // this.setState({total})
     this.focusListener = this.props.navigation.addListener('focus', () => {
-      console.warn('my cart', global.cart);
+      //console.warn('my cart', global.cart);
       this.setState({data:global.cart})
     });
   }

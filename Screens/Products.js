@@ -26,7 +26,7 @@ const styles = require('../Components/Style.js');
 class Products extends Component {
   constructor(props) {
     super(props);
-    console.warn(props);
+    //console.warn(props);
     this.state = {
       isLoading: true,
       data: [],
@@ -51,14 +51,14 @@ class Products extends Component {
     form.append('module', 'subcatlist');
     form.append('user_id', global.id);
     form.append('cat_id', this.props.route.params.id);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn('subcat', json);
+        //console.warn('subcat', json);
         this.setState({sub_cat: json});
         return json;
       })
@@ -90,14 +90,14 @@ class Products extends Component {
     form.append('module', 'catproduct');
     form.append('user_id', global.id);
     form.append('cat_id', e);
-    console.warn(form);
+    //console.warn(form);
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn('prods', json);
+        //console.warn('prods', json);
         this.setState({data: json});
         let arr = this.state.data.map(item => {
           item.cart = [];
@@ -124,21 +124,21 @@ class Products extends Component {
       return {...key};
     });
     this.setState({data: arr});
-    console.warn(ind, item);
+    //console.warn(ind, item);
   };
   addWishlist = id => {
     var form = new FormData();
     form.append('module', 'useraddwishlist');
     form.append('user_id', global.id);
     form.append('product_id', id);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn('add', json);
+        //console.warn('add', json);
         Toast.show('Added to wishlist');
         this.product_list(this.props.route.params.id);
         // this.setState({ potsforplant: json })
@@ -158,14 +158,14 @@ class Products extends Component {
     form.append('module', 'userremovewishlist');
     form.append('user_id', global.id);
     form.append('product_id', id);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn('add', json);
+        //console.warn('add', json);
         Toast.show('Removed from wishlist');
         this.product_list(this.props.route.params.id);
         // this.setState({ potsforplant: json })

@@ -47,14 +47,14 @@ class Home extends Component {
     form.append('module', 'slider');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn('sliders', json);
+        //console.warn('sliders', json);
         this.setState({slider: json});
         return json;
       })
@@ -80,14 +80,14 @@ class Home extends Component {
     form.append('module', 'newarrival');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn( json)
+        // //console.warn( json)
         this.setState({new: json});
         return json;
       })
@@ -104,14 +104,14 @@ class Home extends Component {
     form.append('module', 'toptrends');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn( json)
+        // //console.warn( json)
         this.setState({toptrend: json});
         return json;
       })
@@ -128,14 +128,14 @@ class Home extends Component {
     form.append('module', e);
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn("best", json)
+        // //console.warn("best", json)
         this.setState({best: json});
         return json;
       })
@@ -152,14 +152,14 @@ class Home extends Component {
     form.append('module', 'plantsbybenefits');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn('benefit', json);
+        // //console.warn('benefit', json);
         this.setState({benefit: json});
         return json;
       })
@@ -176,14 +176,14 @@ class Home extends Component {
     form.append('module', 'potsforplants');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn('pots', json);
+        // //console.warn('pots', json);
         this.setState({potsforplant: json});
         return json;
       })
@@ -201,14 +201,14 @@ class Home extends Component {
     form.append('module', 'useraddwishlist');
     form.append('user_id', global.id);
     form.append('prod_id', id);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn('add', json);
+        // //console.warn('add', json);
         Toast.show('Added to wishlist');
         this.fetch_new_arrivals();
         this.fetch_plantsbybenefit();
@@ -231,14 +231,14 @@ class Home extends Component {
     form.append('module', 'userremovewishlist');
     form.append('user_id', global.id);
     form.append('prod_id', id);
-    // console.warn(form)
+    // //console.warn(form)
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        // console.warn('add', json);
+        // //console.warn('add', json);
         Toast.show('Removed from wishlist');
         this.fetch_new_arrivals();
         this.fetch_plantsbybenefit();

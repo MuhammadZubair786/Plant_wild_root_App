@@ -28,7 +28,7 @@ const win = Dimensions.get('window');
 class Checkout extends Component {
   constructor(props) {
     super(props);
-    console.warn(props);
+    //console.warn(props);
     this.state = {
       text: '',
       area: '',
@@ -138,7 +138,7 @@ class Checkout extends Component {
     };
     RazorpayCheckout.open(options)
       .then(data => {
-        console.warn(data)
+        //console.warn(data)
         // this.setState({ payment_id: JSON.stringify(data.razorpay_payment_id) });
         // alert("hy")
         // this.payment_verify(data.razorpay_payment_id);

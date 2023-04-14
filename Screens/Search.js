@@ -36,13 +36,13 @@ class Search extends Component {
         form.append("module", "productsearch");
         form.append("user_id", global.id);
         form.append("search", e);
-        console.warn(form)
+        //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
+                //console.warn(json)
                 // this.setState({data:json})
                 let arr = json.map(item => {
                     item.cart = [];
@@ -67,7 +67,7 @@ class Search extends Component {
           return {...key};
         });
         this.setState({data: arr});
-        console.warn(ind, item);
+        //console.warn(ind, item);
       };
 
       addWishlist = id => {
@@ -75,14 +75,14 @@ class Search extends Component {
         form.append('module', 'useraddwishlist');
         form.append('user_id', global.id);
         form.append('product_id', id);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
           method: 'POST',
           body: form,
         })
           .then(response => response.json())
           .then(json => {
-            console.warn('add', json);
+            //console.warn('add', json);
             Toast.show('Added to wishlist');
             this.search_product(this.state.query);
             // this.setState({ potsforplant: json })
@@ -102,14 +102,14 @@ class Search extends Component {
         form.append('module', 'userremovewishlist');
         form.append('user_id', global.id);
         form.append('product_id', id);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
           method: 'POST',
           body: form,
         })
           .then(response => response.json())
           .then(json => {
-            console.warn('add', json);
+            //console.warn('add', json);
             Toast.show('Removed from wishlist');
             this.search_product(this.state.query);
             // this.setState({ potsforplant: json })

@@ -25,13 +25,13 @@ class AboutUs extends Component {
         form.append("module", "staticpage");
         form.append("page_name", "About Us Mobile App");
         // form.append("password", this.state.password);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
+                //console.warn(json)
                 this.setState({ data: json[0].post_content })
                 return json;
             }).catch((error) => {

@@ -40,13 +40,13 @@ class Wishlist extends Component {
         form.append("module", "userwishlist");
         form.append("user_id", global.id);
         // form.append("password", this.state.password);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("wish",json)
+                //console.warn("wish",json)
                 this.setState({ product: json })
                 // if (!json.status) {
                 //     this.setState({ product: [] })
@@ -64,13 +64,13 @@ class Wishlist extends Component {
             form.append("module", "userremovewishlist");
             form.append("user_id", global.id);
             form.append("prod_id", id);
-            // console.warn(form)
+            // //console.warn(form)
             fetch(global.api, {
                 method: 'POST',
                 body: form,
             }).then((response) => response.json())
                 .then((json) => {
-                    console.warn("add" ,json)
+                    //console.warn("add" ,json)
                     Toast.show("Removed from wishlist")
                     this.fetch_wishlist();
                     // this.setState({ potsforplant: json })

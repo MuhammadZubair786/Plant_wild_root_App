@@ -30,10 +30,11 @@ class ProductDetails extends Component {
             fav: false,
             indexSelected: 0,
             data: [],
-            image: "",
+            image:[],
             related: [],
             comments: [],
             description: [],
+            imageslider:[]
 
         }
     }
@@ -57,8 +58,8 @@ class ProductDetails extends Component {
 
     componentDidMount = () => {
         // alert(global.id)
-        console.warn(this.props.route.params.image)
-        console.warn(this.state.imageslider.length)
+        //console.warn(this.props.route.params.image)
+        // //console.warn(this.state.imageslider.length)
         this.product_detail(this.props.route.params.id);
     }
 
@@ -67,14 +68,14 @@ class ProductDetails extends Component {
         form.append("module", "productdetail");
         form.append("user_id", global.id);
         form.append("product_id", id);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
                 // console.log(id)
-                console.warn("detail", json[0].post_content)
+                //console.warn("detail", json[0].post_content)
                 // let img = JSON.values(json[0].gallery)
                 this.setState({ data: json[0], related: json[0].related, comments: json[0].comments, image: Object.values(json[0].gallery), description: json[0].post_content })
                 return json;
@@ -152,7 +153,7 @@ class ProductDetails extends Component {
                             inactiveDotColor="gray"
                             dotColor={'#000'}
                             activeDotIndex={this.state.indexSelected}
-                            dotsLength={this.state.imageslider.length}
+                            dotsLength={this.state.image.length}
                             animatedDuration={100}
                             inactiveDotScale={1}
                             dotStyle={{
@@ -346,13 +347,13 @@ class MainContainer extends Component {
         form.append("module", "useraddwishlist");
         form.append("user_id", global.id);
         form.append("prod_id", id);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("add", json)
+                //console.warn("add", json)
                 Toast.show("Added to wishlist")
                 this.props.product_detail();
                 // this.setState({ potsforplant: json })
@@ -370,13 +371,13 @@ class MainContainer extends Component {
         form.append("module", "userremovewishlist");
         form.append("user_id", global.id);
         form.append("product_id", id);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("add", json)
+                //console.warn("add", json)
                 Toast.show("Removed from wishlist")
                 this.props.product_detail();
                 // this.setState({ potsforplant: json })
@@ -396,13 +397,13 @@ class MainContainer extends Component {
         form.append("comment_content", this.state.review);
         form.append("rating", this.state.rate);
 
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("add", json)
+                //console.warn("add", json)
                 Toast.show("Review added.")
                 this.props.product_detail();
                 // this.setState({ potsforplant: json })

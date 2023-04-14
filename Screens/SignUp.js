@@ -44,7 +44,7 @@ class SignUp extends Component {
             form.append("module", "sendotp");
             form.append("phone", this.state.contact);
             // form.append("password", this.state.password);
-            // console.warn(form)
+            // //console.warn(form)
             fetch(global.api, {
                 method: 'POST',
                 body: form,
@@ -65,13 +65,13 @@ class SignUp extends Component {
         form.append("module", "validateotp");
         form.append("phone", this.state.contact);
         form.append("otp", this.state.otpInput);
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn(json)
+                //console.warn(json)
                 // this.setState({ visible: false })
                 this.register();
                 return json;
@@ -92,13 +92,13 @@ class SignUp extends Component {
         form.append("password", this.state.password);
         form.append("username", this.state.name);
 
-        // console.warn(form)
+        // //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("user registration",json)
+                //console.warn("user registration",json)
                 if(json.status){
                 this.setState({ visible: false })
                 // this.context.login()

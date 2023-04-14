@@ -35,13 +35,13 @@ class OngoingOrders extends Component {
         form.append("module", "userorders");
         form.append("user_id", global.id);
         // form.append("password", this.state.password);
-        console.warn(form)
+        //console.warn(form)
         fetch(global.api, {
             method: 'POST',
             body: form,
         }).then((response) => response.json())
             .then((json) => {
-                console.warn("order", json)
+                //console.warn("order", json)
                 this.setState({ data: json })
                 return json;
             }).catch((error) => {

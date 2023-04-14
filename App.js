@@ -31,6 +31,7 @@ import Notifications from './Screens/Notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext} from './AuthContextProvider';
 import ShowAll from './Screens/ShowAll';
+import SubCategory from './Screens/SubCategory';
 
 global.api = 'https://wildroots.in/storeapi';
 
@@ -149,7 +150,7 @@ class App extends Component {
   componentDidMount() {
     global.cart = [];
     AsyncStorage.getItem('@auth_login', (err, result) => {
-      // console.warn(result)
+      // //console.warn(result)
       if (JSON.parse(result) != null) {
         this.setState({islogin: true, step: JSON.parse(result).use_type});
         global.token = JSON.parse(result).token;
@@ -218,6 +219,13 @@ class App extends Component {
                   <Stack.Screen
                     name="Products"
                     component={Products}
+                    options={{headerShown: false}}
+                  />
+
+
+          <Stack.Screen
+                    name="SubMenu"
+                    component={SubCategory}
                     options={{headerShown: false}}
                   />
 

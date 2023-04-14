@@ -47,14 +47,14 @@ class Profile extends Component {
     form.append('module', 'userprofile');
     form.append('user_id', global.id);
     // form.append("password", this.state.password);
-    console.warn(form);
+    //console.warn(form);
     fetch(global.api, {
       method: 'POST',
       body: form,
     })
       .then(response => response.json())
       .then(json => {
-        console.warn(json);
+        //console.warn(json);
         this.setState({
           name: json.first_name,
           last_name: json.last_name,
